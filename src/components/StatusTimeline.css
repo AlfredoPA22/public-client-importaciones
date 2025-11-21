@@ -1,7 +1,20 @@
 .status-timeline {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.25rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.status-timeline::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--primary-color), rgba(90, 103, 216, 0.2));
+  opacity: 0.4;
 }
 
 .timeline-item {
@@ -11,30 +24,28 @@
 }
 
 .timeline-marker {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background: var(--bg-color);
-  border: 2px solid var(--border-color);
+  background: white;
+  border: 3px solid var(--border-color);
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: 600;
   color: var(--text-secondary);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
-.timeline-marker.completed {
-  background: var(--primary-color);
-  color: white;
+.timeline-marker-current {
   border-color: var(--primary-color);
-}
-
-.timeline-marker.active {
-  box-shadow: 0 0 0 6px rgba(90, 103, 216, 0.2);
+  color: var(--primary-color);
+  box-shadow: 0 0 0 6px rgba(90, 103, 216, 0.15);
 }
 
 .timeline-content {
   flex: 1;
+  padding-bottom: 0.5rem;
 }
 
 .timeline-status {
@@ -53,9 +64,5 @@
 .timeline-note {
   margin-top: 0.5rem;
   color: var(--text-secondary);
-}
-
-.timeline-date.pending {
-  font-style: italic;
 }
 

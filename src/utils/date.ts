@@ -5,6 +5,18 @@ const buildDate = (year: number, month: number, day: number) => {
   return Number.isNaN(result.getTime()) ? null : result;
 };
 
+const normalizeMicroseconds = (raw: string) => {
+  const match = raw.match(/^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})\.(\d+)(Z|[+-]\d{2}:\d{2})?$/);
+
+  if (!match) {
+    return null;
+  }
+
+  const [, base, fraction, zone = 'Z'] = match;
+  const millis = fraction.slice(0, 3).padEnd(3, '0');
+  return `${base}.${millis}${zone}`;
+};
+
 const tryParseCustomFormats = (raw: string) => {
   const trimmed = raw.trim();
   const isoLike = /^\d{4}[-/]\d{2}[-/]\d{2}$/;
@@ -18,6 +30,12 @@ const tryParseCustomFormats = (raw: string) => {
   if (latam.test(trimmed)) {
     const [day, month, year] = trimmed.split(/[-/]/).map(Number);
     return buildDate(year, month, day);
+  }
+
+  const microSecondsIso = normalizeMicroseconds(trimmed);
+  if (microSecondsIso) {
+    const parsed = new Date(microSecondsIso);
+    return Number.isNaN(parsed.getTime()) ? null : parsed;
   }
 
   return null;

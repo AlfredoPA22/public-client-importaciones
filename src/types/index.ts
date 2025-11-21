@@ -7,8 +7,10 @@ export type ImportStatus =
 
 export interface StatusHistoryEntry {
   status: ImportStatus;
-  timestamp: string;
+  timestamp?: string;
+  changed_at?: string;
   note?: string;
+  notes?: string;
 }
 
 export interface CarInfo {
