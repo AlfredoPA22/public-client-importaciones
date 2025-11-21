@@ -1,0 +1,26 @@
+.days-counter-card {
+  text-align: center;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
+  color: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.days-counter-label {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  opacity: 0.9;
+}
+
+.days-counter-date {
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+
+.days-counter-description {
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
