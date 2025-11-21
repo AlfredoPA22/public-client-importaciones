@@ -48,7 +48,7 @@ export const shareApi = {
       return mockImport(token);
     }
 
-    const response = await fetch(`${API_BASE_URL}/share/${token}`);
+    const response = await fetch(`${API_BASE_URL}share/${token}`);
 
     if (!response.ok) {
       const message = await response.text();
